@@ -19,13 +19,13 @@ node {
     
     stage('SCM Checkout') {
         slackSend color: '#01B0F0', message: " ${env.STAGE_NAME} ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)" 
-        git url: 'https://github.com/Jagostini/tp-hibernate.git/'
+        git url: 'https://github.com/dbgfire/it_orm.git'
     }
     
     stage('SonarQube analysis') { 
         slackSend color: '#01B0F0', message: " ${env.STAGE_NAME} ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)" 
         scannerHome = tool 'SonarQube Scanner 2.8'
-		withSonarQubeEnv('TPORM') {
+		withSonarQubeEnv('coal') {
 		    mvnCMD = "${mvnHome}\\bin\\mvn"
 		    bat (/"${mvnCMD}" sonar:sonar/)
 		}
@@ -57,7 +57,7 @@ node {
 			"files": [
 			{
 				"pattern": "target/(*).jar",
-				"target": "generic-local/BobyetBoby/"
+				"target": "generic-local/coal/"
 			}]
 		}
 		"""

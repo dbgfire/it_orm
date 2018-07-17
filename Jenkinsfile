@@ -25,7 +25,7 @@ node {
     stage('SonarQube analysis') { 
         slackSend color: '#01B0F0', message: " ${env.STAGE_NAME} ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)" 
         scannerHome = tool 'SonarQube Scanner 2.8'
-		withSonarQubeEnv('coal') {
+		withSonarQubeEnv('Coal') {
 		    mvnCMD = "${mvnHome}\\bin\\mvn"
 		    bat (/"${mvnCMD}" sonar:sonar/)
 		}
